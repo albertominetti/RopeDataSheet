@@ -1,0 +1,319 @@
+{
+  "ropeSpecs": [
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 6,
+      "weight": 6,
+      "minimumBreakingStrength": 500,
+      "length": 300
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 8,
+      "weight": 6,
+      "minimumBreakingStrength": 960,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 10,
+      "weight": 9,
+      "minimumBreakingStrength": 1425,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 12,
+      "weight": 14,
+      "minimumBreakingStrength": 2030,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 14,
+      "weight": 18,
+      "minimumBreakingStrength": 2790,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 16,
+      "weight": 23,
+      "minimumBreakingStrength": 3500,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 18,
+      "weight": 30,
+      "minimumBreakingStrength": 4450,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 20,
+      "weight": 36,
+      "minimumBreakingStrength": 5370,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 22,
+      "weight": 44,
+      "minimumBreakingStrength": 6500,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 24,
+      "weight": 52,
+      "minimumBreakingStrength": 7600,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 26,
+      "weight": 61,
+      "minimumBreakingStrength": 8900,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 28,
+      "weight": 71,
+      "minimumBreakingStrength": 10100,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 30,
+      "weight": 81,
+      "minimumBreakingStrength": 11500,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 32,
+      "weight": 92,
+      "minimumBreakingStrength": 12800,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 34,
+      "weight": 104,
+      "minimumBreakingStrength": 14400,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 36,
+      "weight": 117,
+      "minimumBreakingStrength": 16100,
+      "length": 200
+    },
+    {
+      "materialType": "POLYPROPYLENE",
+      "diameter": 38,
+      "weight": 130,
+      "minimumBreakingStrength": 17700,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 6,
+      "weight": 9,
+      "minimumBreakingStrength": 260,
+      "length": 300
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 8,
+      "weight": 11,
+      "minimumBreakingStrength": 480,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 10,
+      "weight": 15,
+      "minimumBreakingStrength": 635,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 12,
+      "weight": 22,
+      "minimumBreakingStrength": 950,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 14,
+      "weight": 30,
+      "minimumBreakingStrength": 1280,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 16,
+      "weight": 40,
+      "minimumBreakingStrength": 1780,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 18,
+      "weight": 49,
+      "minimumBreakingStrength": 2130,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 20,
+      "weight": 60,
+      "minimumBreakingStrength": 2840,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 22,
+      "weight": 73,
+      "minimumBreakingStrength": 3400,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 24,
+      "weight": 85,
+      "minimumBreakingStrength": 4060,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 26,
+      "weight": 101,
+      "minimumBreakingStrength": 4720,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 28,
+      "weight": 117,
+      "minimumBreakingStrength": 5330,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 30,
+      "weight": 135,
+      "minimumBreakingStrength": 6100,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 32,
+      "weight": 152,
+      "minimumBreakingStrength": 6860,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 34,
+      "weight": 171,
+      "minimumBreakingStrength": 7700,
+      "length": 200
+    },
+    {
+      "materialType": "SISAL",
+      "diameter": 36,
+      "weight": 190,
+      "minimumBreakingStrength": 8640,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 8,
+      "weight": 11,
+      "minimumBreakingStrength": 610,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 10,
+      "weight": 17,
+      "minimumBreakingStrength": 955,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 12,
+      "weight": 24,
+      "minimumBreakingStrength": 1360,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 14,
+      "weight": 32,
+      "minimumBreakingStrength": 1900,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 16,
+      "weight": 41,
+      "minimumBreakingStrength": 2430,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 18,
+      "weight": 52,
+      "minimumBreakingStrength": 3040,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 20,
+      "weight": 64,
+      "minimumBreakingStrength": 3810,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 22,
+      "weight": 77,
+      "minimumBreakingStrength": 4570,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 24,
+      "weight": 92,
+      "minimumBreakingStrength": 5480,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 26,
+      "weight": 108,
+      "minimumBreakingStrength": 6400,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 28,
+      "weight": 126,
+      "minimumBreakingStrength": 7320,
+      "length": 200
+    },
+    {
+      "materialType": "POLYESTERE",
+      "diameter": 30,
+      "weight": 145,
+      "minimumBreakingStrength": 8370,
+      "length": 200
+    }
+  ]
+}
