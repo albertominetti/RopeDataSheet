@@ -33,10 +33,19 @@
           <v-col>
             <v-select
               :items="diameters"
-              label="Diametro (mm)"
+              label="Diametro(mm)"
               dense
               outlined
               @change="onDiameterChange()"
+            >
+            </v-select>
+          </v-col>
+          <v-col>
+            <v-select
+              :items="material"
+              label="Materiale(tipo di fibra)"
+              dense
+              outlined
             >
             </v-select>
           </v-col>
@@ -44,22 +53,33 @@
         <v-row>
           <v-col>
             <v-text-field
-              v-model="length"
-              label="Lunghezza"
+              v-model="ropeLength"
+              type="number"
+              label="Lunghezza(m)"
               dense
               outlined
-              readonly
             ></v-text-field>
           </v-col>
           <v-col>
             <v-text-field
               v-model="linearMass"
-              label="Massa Lineare"
+              type="number"
+              label="Massa Lineare(g/m)"
               dense
               outlined
-              readonly
             ></v-text-field>
           </v-col>
+          <v-col>
+            <v-text-field
+              v-model="ropeMass"
+              type="number"
+              label="Massa del cavo(kg)"
+              dense
+              outlined
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col>
             <v-text-field
               v-model="yarnsNumberAndType"
@@ -69,21 +89,10 @@
               readonly
             ></v-text-field>
           </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-text-field
-              v-model="ropeMass"
-              label="Massa del cavo"
-              dense
-              outlined
-              readonly
-            ></v-text-field>
-          </v-col>
           <v-col>
             <v-text-field
               v-model="minimumBreakingStrength"
-              label="Carico di rottura minimo"
+              label="Carico di rottura minimo(kN)"
               dense
               outlined
               readonly
@@ -93,8 +102,8 @@
       </v-card-text>
       <v-card-actions>
         <v-btn @click="generateAndDownloadPDF()" color="primary"
-          >Genera & Scarica PDF</v-btn
-        >
+          >Genera & Scarica PDF
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -109,21 +118,26 @@ export default class RopeDataSheet extends Vue {
   private orderNumber = "";
   private intenderFor = "";
   private diameters: number[] = [22, 23, 24];
-  private length = 0;
+  private material: string[] = ["SISAL", "POLYPROPYLENE", "POLIESTERE"];
+  private ropeLength = 200;
   private linearMass = 0;
   private yarnsNumberAndType = "";
-  private ropeMass = 0;
   private minimumBreakingStrength = "";
 
   onDiameterChange(): void {
-    this.length = Math.round(Math.random() * 100);
-    this.linearMass = Math.round(Math.random() * 100);
-    this.yarnsNumberAndType = Math.round(Math.random() * 100).toString();
-    this.ropeMass = Math.round(Math.random() * 100);
-    this.minimumBreakingStrength = Math.round(Math.random() * 100).toString();
+    console.log("Diameter changed.");
   }
+
   generateAndDownloadPDF(): void {
     alert("Not Implemented yet!");
+  }
+
+  get ropeMass(): number {
+    return (this.ropeLength * this.linearMass) / 1000;
+  }
+
+  set ropeMass(ropeMass: number) {
+    console.log("Rope Mass value: ", ropeMass);
   }
 }
 </script>
