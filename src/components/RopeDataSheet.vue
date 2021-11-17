@@ -3,8 +3,8 @@
     <v-card class="pa-2">
       <v-card-title>Rope Data Sheet</v-card-title>
       <v-card-text>
-        <v-row>
-          <v-col>
+        <v-row dense>
+          <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="purchaser"
               label="Committente"
@@ -12,7 +12,7 @@
               outlined
             ></v-text-field>
           </v-col>
-          <v-col>
+          <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="orderNumber"
               label="Numero Ordine"
@@ -20,7 +20,7 @@
               outlined
             ></v-text-field>
           </v-col>
-          <v-col>
+          <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="intenderFor"
               label="Destinazione"
@@ -29,22 +29,11 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row dense>
           <v-col>
-            <v-select
-              v-model="selectedMaterial"
-              :items="materials"
-              @change="onMaterialChange"
-              label="Materiale(tipo di fibra)"
-              dense
-              outlined
-            >
-            </v-select>
-          </v-col>
-          <v-col>
-            <v-select
+            <v-autocomplete
               v-model="selectedRopeSpec"
-              :items="ropeSpecsBySelectedMaterial"
+              :items="aggregatedRopeSpecs"
               :item-text="prettyRopeSpec"
               @change="onRopeSpecChange"
               label="Specifiche ruota"
@@ -52,11 +41,11 @@
               outlined
               dense
             >
-            </v-select>
+            </v-autocomplete>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col>
+        <v-row dense>
+          <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="ropeLength"
               type="number"
@@ -65,7 +54,7 @@
               outlined
             ></v-text-field>
           </v-col>
-          <v-col>
+          <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="linearMass"
               type="number"
@@ -74,7 +63,7 @@
               outlined
             ></v-text-field>
           </v-col>
-          <v-col>
+          <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="ropeMass"
               type="number"
@@ -84,8 +73,8 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col>
+        <v-row dense>
+          <v-col :xl="6" :lg="6" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="yarnsNumberAndType"
               label="Numero e tipo dei fili"
@@ -94,7 +83,7 @@
               readonly
             ></v-text-field>
           </v-col>
-          <v-col>
+          <v-col :xl="6" :lg="6" :md="12" :sm="12" cols="12">
             <v-text-field
               v-model="minimumBreakingStrength"
               label="Carico di rottura minimo(kN)"
@@ -118,14 +107,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import { httpClient } from "@/mixins/HttpClient";
 import { RopeSpec } from "@/model/RopeSpec";
+import _ from "lodash";
 
 @Component
 export default class RopeDataSheet extends Vue {
   private purchaser = "";
   private orderNumber = "";
   private intenderFor = "";
-  private materials: string[] = ["SISAL", "POLYPROPYLENE", "POLYESTERE"];
-  private selectedMaterial = "SISAL";
   private selectedRopeSpec: RopeSpec | null = null;
   private ropeLength = 200;
   private ropeMass = 0;
@@ -140,14 +128,6 @@ export default class RopeDataSheet extends Vue {
     this.allRopeSpecs = response.data.ropeSpecs;
   }
 
-  onMaterialChange() {
-    this.selectedRopeSpec = null;
-    this.ropeLength = 0;
-    this.linearMass = 0;
-    this.ropeMass = 0;
-    this.minimumBreakingStrength = "";
-  }
-
   onRopeSpecChange(ropeSpec: RopeSpec): void {
     this.ropeLength = ropeSpec.length;
     this.ropeMass = ropeSpec.weight;
@@ -159,17 +139,25 @@ export default class RopeDataSheet extends Vue {
   }
 
   prettyRopeSpec(ropeSpec: RopeSpec): string {
-    return `${ropeSpec.diameter}ø - Peso: ${ropeSpec.weight}Kg - Lunghezza: ${ropeSpec.length}m`;
+    return `ø${ropeSpec.diameter} mm ${ropeSpec.materialType} - Peso: ${ropeSpec.weight} Kg - Lunghezza: ${ropeSpec.length} m`;
   }
 
   generateAndDownloadPDF(): void {
     alert("Not Implemented yet!");
   }
 
-  get ropeSpecsBySelectedMaterial(): RopeSpec[] {
-    return this.allRopeSpecs.filter(
-      (ropeSpec) => ropeSpec.materialType === this.selectedMaterial
-    );
+  get aggregatedRopeSpecs(): any {
+    let ropeSpecsByMaterial = _.groupBy(this.allRopeSpecs, "materialType");
+
+    return Object.keys(ropeSpecsByMaterial).flatMap((materialType) => {
+      let ropeSpecs = ropeSpecsByMaterial[materialType] as any;
+
+      ropeSpecs.unshift({
+        header: materialType,
+      });
+
+      return ropeSpecs;
+    });
   }
 }
 </script>
