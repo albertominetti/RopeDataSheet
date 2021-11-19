@@ -8,7 +8,7 @@
       </v-col>
       <v-col cols="12" xl="6" lg="6" md="12" sm="12">
         <rope-data-sheet-preview
-          v-show="form != null"
+          v-if="form != null"
           :rope-form.sync="form"
         ></rope-data-sheet-preview>
       </v-col>

@@ -2,15 +2,20 @@
   <v-card outlined>
     <v-card-title>Preview</v-card-title>
     <v-card-text>
-      <v-container fluid>
-        <iframe
-          width="100%"
-          height="1000px"
-          title="pdf"
-          :src="iframeSrc"
-        ></iframe>
+      <v-container>
+        <pdf :src="pdfSource"></pdf>
       </v-container>
     </v-card-text>
+    <v-card-actions>
+      <v-btn
+        color="primary"
+        :href="pdfSource"
+        :download="filename"
+        @click="filename = createFilename()"
+      >
+        Download
+      </v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -21,16 +26,24 @@ import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { ContentTable, TDocumentDefinitions } from "pdfmake/interfaces";
 import { DateTime } from "luxon";
+import pdf from "vue-pdf";
+
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
-@Component
+@Component({
+  components: {
+    pdf,
+  },
+})
 export default class RopeDataSheetPreview extends Vue {
   @PropSync("ropeForm")
   form!: RopeDataSheet;
+  pdfSource = "";
+  filename = "document.pdf";
 
-  iframeSrc = "";
   async generatePdf(): Promise<void> {
     const docDefinition: TDocumentDefinitions = {
+      pageSize: "A4",
       content: [
         {
           text: "Corderia e Stoppificio di Minetti G. & Co.",
@@ -254,8 +267,13 @@ export default class RopeDataSheetPreview extends Vue {
 
     pdfMake
       .createPdf(docDefinition)
-      .getDataUrl((url) => (this.iframeSrc = url));
+      .getDataUrl((url) => (this.pdfSource = url));
   }
+
+  createFilename(): string {
+    return "ROPE_DATA_SHEET_" + DateTime.now().toMillis() + ".pdf";
+  }
+
   @Watch("form", { immediate: true, deep: true })
   onFormChanged(): void {
     this.generatePdf();
