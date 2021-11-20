@@ -3,6 +3,12 @@
     <v-card-title>Preview</v-card-title>
     <v-card-text>
       <v-container>
+        <v-overlay absolute :value="pdfGenerationTimer.seconds > 0">
+          <v-alert type="info" icon="mdi-timer-sand" shaped>
+            PDF Preview in {{ pdfGenerationTimer.seconds }} seconds...
+            <v-progress-linear color="white" indeterminate></v-progress-linear>
+          </v-alert>
+        </v-overlay>
         <pdf :src="pdfSource" style="border: 1px solid"></pdf>
       </v-container>
     </v-card-text>
@@ -22,6 +28,7 @@ import { getRopeDataSheet } from "@/mixins/PdfMakeUtils";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import pdf from "vue-pdf";
+import HumanTimer from "human-timer";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -35,6 +42,11 @@ export default class RopeDataSheetPreview extends Vue {
   form!: RopeDataSheet;
   pdfSource = "";
   filename = "document.pdf";
+  pdfGenerationTimer = new HumanTimer({
+    seconds: 2,
+    zeroes: false,
+    onEnd: () => this.generatePdf(),
+  });
 
   generatePdf(): void {
     console.log("Generating PDF...");
@@ -48,7 +60,7 @@ export default class RopeDataSheetPreview extends Vue {
 
   @Watch("form", { immediate: true, deep: true })
   onFormChanged(): void {
-    this.generatePdf();
+    this.pdfGenerationTimer.restart();
   }
 }
 </script>
