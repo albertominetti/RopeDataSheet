@@ -12,5 +12,5 @@ export interface RopeDataSheet {
   yarnsNumberAndType: string;
   lay: string;
   strandsNumber: number;
-  ropeSpec: RopeSpec | null;
+  ropeSpec: RopeSpec;
 }

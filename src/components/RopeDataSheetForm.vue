@@ -4,28 +4,13 @@
     <v-card-text>
       <v-row dense>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field
-            v-model="form.purchaser"
-            label="Committente"
-            dense
-            outlined
-          ></v-text-field>
+          <v-text-field v-model="form.purchaser" label="Committente" dense outlined></v-text-field>
         </v-col>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field
-            v-model="form.orderNumber"
-            label="Numero Ordine"
-            dense
-            outlined
-          ></v-text-field>
+          <v-text-field v-model="form.orderNumber" label="Numero Ordine" dense outlined></v-text-field>
         </v-col>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field
-            v-model="form.intenderFor"
-            label="Destinazione"
-            dense
-            outlined
-          ></v-text-field>
+          <v-text-field v-model="form.intenderFor" label="Destinazione" dense outlined></v-text-field>
         </v-col>
       </v-row>
       <v-row dense>
@@ -45,13 +30,7 @@
       </v-row>
       <v-row dense>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field
-            v-model="form.ropeLength"
-            type="number"
-            label="Lunghezza(m)"
-            dense
-            outlined
-          ></v-text-field>
+          <v-text-field v-model="form.ropeLength" type="number" label="Lunghezza(m)" dense outlined></v-text-field>
         </v-col>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
           <v-text-field
@@ -63,23 +42,12 @@
           ></v-text-field>
         </v-col>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field
-            v-model="form.ropeMass"
-            type="number"
-            label="Massa del cavo(kg)"
-            dense
-            outlined
-          ></v-text-field>
+          <v-text-field v-model="form.ropeMass" type="number" label="Massa del cavo(kg)" dense outlined></v-text-field>
         </v-col>
       </v-row>
       <v-row dense>
         <v-col :xl="6" :lg="6" :md="12" :sm="12" cols="12">
-          <v-text-field
-            v-model="form.yarnsNumberAndType"
-            label="Numero e tipo dei fili"
-            dense
-            outlined
-          ></v-text-field>
+          <v-text-field v-model="form.yarnsNumberAndType" label="Numero e tipo dei fili" dense outlined></v-text-field>
         </v-col>
         <v-col :xl="6" :lg="6" :md="12" :sm="12" cols="12">
           <v-text-field
@@ -116,13 +84,20 @@ export default class RopeDataSheetForm extends Vue {
     minimumBreakingStrength: 0,
     lay: "Right/Destro",
     strandsNumber: 3,
-    ropeSpec: null,
+    ropeSpec: {
+      materialType: "Example",
+      diameter: 0,
+      length: 0,
+      weight: 0,
+      minimumBreakingStrength: 0,
+    } as RopeSpec,
   };
 
   private ropeSpecs: RopeSpec[] = [];
 
   async mounted(): Promise<void> {
     this.ropeSpecs = await this.getRopeSpecs();
+    if (this.ropeSpecs.length > 0) this.form.ropeSpec = this.ropeSpecs[0];
   }
 
   private async getRopeSpecs(): Promise<RopeSpec[]> {
@@ -134,11 +109,8 @@ export default class RopeDataSheetForm extends Vue {
     this.form.ropeLength = ropeSpec.length;
     this.form.ropeMass = ropeSpec.weight;
     let gravityAcceleration = 98;
-    let minimumBreakingStrengthKN =
-      ropeSpec.minimumBreakingStrength / gravityAcceleration;
-    this.form.minimumBreakingStrength = parseFloat(
-      minimumBreakingStrengthKN.toFixed(1)
-    );
+    let minimumBreakingStrengthKN = ropeSpec.minimumBreakingStrength / gravityAcceleration;
+    this.form.minimumBreakingStrength = parseFloat(minimumBreakingStrengthKN.toFixed(1));
     this.form.linearMass = (this.form.ropeMass * 1000) / this.form.ropeLength;
   }
 
@@ -162,7 +134,7 @@ export default class RopeDataSheetForm extends Vue {
 
   @Watch("form", { immediate: true, deep: true })
   @Emit()
-  onFormChanged(form: RopeDataSheet) {
+  onFormChanged(form: RopeDataSheet): RopeDataSheet {
     return form;
   }
 }
