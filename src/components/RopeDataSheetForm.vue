@@ -97,7 +97,10 @@ export default class RopeDataSheetForm extends Vue {
 
   async mounted(): Promise<void> {
     this.ropeSpecs = await RopeDataSheetForm.getRopeSpecs();
-    if (this.ropeSpecs.length > 0) this.form.ropeSpec = this.ropeSpecs[0];
+    if (this.ropeSpecs.length > 0) {
+      this.form.ropeSpec = this.ropeSpecs[0];
+      this.onRopeSpecChange(this.form.ropeSpec);
+    }
   }
 
   private static async getRopeSpecs(): Promise<RopeSpec[]> {
