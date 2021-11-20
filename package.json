@@ -11,6 +11,7 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "debounce": "^1.2.1",
+    "human-timer": "^1.0.0",
     "lodash": "^4.17.21",
     "luxon": "^2.1.1",
     "pdfmake": "^0.2.4",

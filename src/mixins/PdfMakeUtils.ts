@@ -9,6 +9,8 @@ export const createCellDescription = (upperDescr: string, lowerDescr: string): T
 export const createCellValue = (value: Content, colSpan?: number): TableCell => ({
   text: value,
   colSpan: colSpan,
+  alignment: "center",
+  margin: [0, 7, 0, 0],
 });
 
 export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinitions => ({
@@ -37,7 +39,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
           [
             createCellDescription("Order No.", "Ordine N."),
             createCellValue(ropeDataSheet.orderNumber),
-            createCellDescription("Intender for", "Destinazione"),
+            createCellDescription("Intended for", "Destinazione"),
             createCellValue(ropeDataSheet.intendedFor),
           ],
         ],
