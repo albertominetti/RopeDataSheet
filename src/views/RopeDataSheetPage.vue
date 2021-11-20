@@ -2,15 +2,10 @@
   <v-container>
     <v-row>
       <v-col cols="12" xl="6" lg="6" md="12" sm="12">
-        <rope-data-sheet-form
-          @on-form-changed="form = $event"
-        ></rope-data-sheet-form>
+        <rope-data-sheet-form @on-form-changed="form = $event"></rope-data-sheet-form>
       </v-col>
       <v-col cols="12" xl="6" lg="6" md="12" sm="12">
-        <rope-data-sheet-preview
-          v-if="form != null"
-          :rope-form.sync="form"
-        ></rope-data-sheet-preview>
+        <rope-data-sheet-preview v-if="form != null" :rope-form.sync="form"></rope-data-sheet-preview>
       </v-col>
     </v-row>
   </v-container>
