@@ -2,9 +2,13 @@ name: Compile and test
 
 on:
   push:
-    branches: [ "*", "!release/prod" ]
+    branches:
+      - "**"
+      - "!release/prod"
   pull_request:
-    branches: [ "*", "release/prod" ]
+    branches:
+      - "**"
+      - "!release/prod"
   workflow_dispatch:
 
 jobs:
