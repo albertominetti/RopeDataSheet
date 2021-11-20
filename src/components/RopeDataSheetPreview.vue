@@ -5,7 +5,7 @@
       <v-container>
         <v-overlay absolute :value="pdfGenerationTimer.seconds > 0">
           <v-alert type="info" icon="mdi-timer-sand" shaped>
-            PDF Preview in {{ pdfGenerationTimer.seconds }} seconds...
+            PDF preview in {{ pdfGenerationTimer.seconds }} seconds...
             <v-progress-linear color="white" indeterminate></v-progress-linear>
           </v-alert>
         </v-overlay>
@@ -13,7 +13,7 @@
       </v-container>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" :href="pdfSource" :download="filename" @click="filename = createFilename()">
+      <v-btn color="primary" :href="pdfSource" :download="filename" @click="filename = createFilename(form)">
         Download
       </v-btn>
     </v-card-actions>
@@ -54,8 +54,8 @@ export default class RopeDataSheetPreview extends Vue {
     pdfMake.createPdf(pdfDefinition).getDataUrl((url) => (this.pdfSource = url));
   }
 
-  createFilename(): string {
-    return "ROPE_DATA_SHEET_" + DateTime.now().toMillis() + ".pdf";
+  createFilename(form: RopeDataSheet): string {
+    return "Rope_Data_Sheet_" + form.orderNumber + "_" + form.purchaser + "_" + DateTime.now().toISODate() + ".pdf";
   }
 
   @Watch("form", { immediate: true, deep: true })
