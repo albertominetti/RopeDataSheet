@@ -3,13 +3,15 @@
     <v-card-title>Rope Data Sheet</v-card-title>
     <v-card-text>
       <v-row dense>
-        <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
+        <v-col cols="12">
           <v-text-field v-model="form.purchaser" label="Committente" dense outlined></v-text-field>
         </v-col>
-        <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
+      </v-row>
+      <v-row dense>
+        <v-col :xl="6" :lg="6" :md="12" :sm="12" cols="12">
           <v-text-field v-model="form.orderNumber" label="Numero Ordine" dense outlined></v-text-field>
         </v-col>
-        <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
+        <v-col :xl="6" :lg="6" :md="12" :sm="12" cols="12">
           <v-text-field v-model="form.intendedFor" label="Destinazione" dense outlined></v-text-field>
         </v-col>
       </v-row>
@@ -73,7 +75,7 @@ import { RopeDataSheet } from "@/model/RopeDataSheet";
 @Component
 export default class RopeDataSheetForm extends Vue {
   public form: RopeDataSheet = {
-    manufacturer: "CORDERIA E STOPPIFICIO DI MINETTI G. E C. S.A.S.",
+    manufacturer: "Corderia e Stoppificio di Minetti G. & C. S.a.s.",
     purchaser: "",
     orderNumber: "",
     intendedFor: "",
