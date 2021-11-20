@@ -99,10 +99,6 @@ export default class RopeDataSheetForm extends Vue {
 
   async mounted(): Promise<void> {
     this.ropeSpecs = await RopeDataSheetForm.getRopeSpecs();
-    if (this.ropeSpecs.length > 0) {
-      this.form.ropeSpec = this.ropeSpecs[0];
-      this.onRopeSpecChange(this.form.ropeSpec);
-    }
   }
 
   private static async getRopeSpecs(): Promise<RopeSpec[]> {
@@ -120,7 +116,7 @@ export default class RopeDataSheetForm extends Vue {
   }
 
   prettyRopeSpec(ropeSpec: RopeSpec): string {
-    return `ø${ropeSpec.diameter} mm ${ropeSpec.materialType} - Peso: ${ropeSpec.weight} Kg - Lunghezza: ${ropeSpec.length} m`;
+    return `ø ${ropeSpec.diameter} mm ${ropeSpec.materialType} - Peso: ${ropeSpec.weight} kg - Lunghezza: ${ropeSpec.length} m`;
   }
 
   get aggregatedRopeSpecs(): ({ header: string } | RopeSpec)[] {
