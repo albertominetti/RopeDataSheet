@@ -38,7 +38,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
             createCellDescription("Order No.", "Ordine N."),
             createCellValue(ropeDataSheet.orderNumber),
             createCellDescription("Intender for", "Destinazione"),
-            createCellValue(ropeDataSheet.intenderFor),
+            createCellValue(ropeDataSheet.intendedFor),
           ],
         ],
       },
