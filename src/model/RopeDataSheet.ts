@@ -4,7 +4,7 @@ export interface RopeDataSheet {
   manufacturer: string;
   purchaser: string;
   orderNumber: string;
-  intenderFor: string;
+  intendedFor: string;
   ropeLength: number;
   ropeMass: number;
   linearMass: number;
