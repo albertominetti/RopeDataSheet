@@ -10,7 +10,7 @@
           <v-text-field v-model="form.orderNumber" label="Numero Ordine" dense outlined></v-text-field>
         </v-col>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field v-model="form.intenderFor" label="Destinazione" dense outlined></v-text-field>
+          <v-text-field v-model="form.intendedFor" label="Destinazione" dense outlined></v-text-field>
         </v-col>
       </v-row>
       <v-row dense>
@@ -76,7 +76,7 @@ export default class RopeDataSheetForm extends Vue {
     manufacturer: "CORDERIA E STOPPIFICIO DI MINETTI G. E C. S.A.S.",
     purchaser: "",
     orderNumber: "",
-    intenderFor: "",
+    intendedFor: "",
     ropeLength: 200,
     ropeMass: 0,
     linearMass: 0,
@@ -96,11 +96,11 @@ export default class RopeDataSheetForm extends Vue {
   private ropeSpecs: RopeSpec[] = [];
 
   async mounted(): Promise<void> {
-    this.ropeSpecs = await this.getRopeSpecs();
+    this.ropeSpecs = await RopeDataSheetForm.getRopeSpecs();
     if (this.ropeSpecs.length > 0) this.form.ropeSpec = this.ropeSpecs[0];
   }
 
-  private async getRopeSpecs(): Promise<RopeSpec[]> {
+  private static async getRopeSpecs(): Promise<RopeSpec[]> {
     let response = await httpClient.get("static/data/rope-specs.json");
     return response.data.ropeSpecs as RopeSpec[];
   }
@@ -118,17 +118,13 @@ export default class RopeDataSheetForm extends Vue {
     return `ø${ropeSpec.diameter} mm ${ropeSpec.materialType} - Peso: ${ropeSpec.weight} Kg - Lunghezza: ${ropeSpec.length} m`;
   }
 
-  get aggregatedRopeSpecs(): any {
+  get aggregatedRopeSpecs(): ({ header: string } | RopeSpec)[] {
     let ropeSpecsByMaterial = _.groupBy(this.ropeSpecs, "materialType");
 
     return Object.keys(ropeSpecsByMaterial).flatMap((materialType) => {
-      let ropeSpecs = ropeSpecsByMaterial[materialType] as any;
-
-      ropeSpecs.unshift({
-        header: materialType,
-      });
-
-      return ropeSpecs;
+      let ropeSpecs = ropeSpecsByMaterial[materialType] as RopeSpec[];
+      ropeSpecs.sort((a, b) => a.diameter - b.diameter);
+      return [{ header: materialType }, ...ropeSpecs];
     });
   }
 
