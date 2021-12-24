@@ -3,14 +3,14 @@ import { RopeDataSheet } from "@/model/RopeDataSheet";
 import { DateTime } from "luxon";
 
 export const createCellDescription = (upperDescr: string, lowerDescr: string): TableCell => ({
-  text: [upperDescr, "\n", { text: lowerDescr, italics: true }],
+  text: ["\n", upperDescr, "\n", { text: lowerDescr, italics: true }, "\n\n"],
 });
 
 export const createCellValue = (value: Content, colSpan?: number): TableCell => ({
-  text: value,
+  text: "\n" + value,
   colSpan: colSpan,
-  alignment: "center",
-  margin: [0, 7, 0, 0],
+  alignment: "left",
+  margin: [10, 7, 0, 0],
 });
 
 export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinitions => ({
@@ -34,7 +34,6 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
             {},
             {},
           ],
-          [createCellDescription("Work order No.", "Commessa N."), createCellValue("", 3)],
           [createCellDescription("Purchaser", "Committente"), createCellValue(ropeDataSheet.purchaser, 3)],
           [
             createCellDescription("Order No.", "Ordine N."),
@@ -51,7 +50,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
         widths: ["auto", "*", "auto", "*"],
         body: [
           [
-            createCellDescription("Material (type of fibre)", "Materiale (tipo di fibra)"),
+            createCellDescription("Material (type of fiber)", "Materiale (tipo di fibra)"),
             createCellValue(ropeDataSheet.ropeSpec.materialType, 3),
             {},
             {},
@@ -78,7 +77,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
             createCellDescription("Lay", "Senso di avvolgimento"),
             createCellValue(ropeDataSheet.lay),
             createCellDescription("Minimum breaking strength", "Carico di rottura minimo"),
-            createCellValue(ropeDataSheet.minimumBreakingStrength + "kN"),
+            createCellValue(ropeDataSheet.minimumBreakingStrength + " kN"),
           ],
         ],
       },
