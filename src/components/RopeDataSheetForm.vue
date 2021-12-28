@@ -29,22 +29,32 @@
           >
           </v-autocomplete>
         </v-col>
+        <v-col :xl="3" :lg="3" :md="12" :sm="12" cols="12">
+          <v-text-field
+            v-model="form.quantity"
+            type="number"
+            label="Colli"
+            dense
+            outlined
+            @change="onQuantityChange"
+          ></v-text-field>
+        </v-col>
       </v-row>
       <v-row dense>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field v-model="form.ropeLength" type="number" label="Lunghezza(m)" dense outlined></v-text-field>
+          <v-text-field v-model="form.ropeLength" type="number" label="Lunghezza (m)" dense outlined></v-text-field>
         </v-col>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
           <v-text-field
             v-model="form.linearMass"
             type="number"
-            label="Massa Lineare(g/m)"
+            label="Massa Lineare (g/m)"
             dense
             outlined
           ></v-text-field>
         </v-col>
         <v-col :xl="4" :lg="4" :md="12" :sm="12" cols="12">
-          <v-text-field v-model="form.ropeMass" type="number" label="Massa del cavo(kg)" dense outlined></v-text-field>
+          <v-text-field v-model="form.ropeMass" type="number" label="Massa del cavo (kg)" dense outlined></v-text-field>
         </v-col>
       </v-row>
       <v-row dense>
@@ -55,7 +65,7 @@
           <v-text-field
             v-model="form.minimumBreakingStrength"
             type="number"
-            label="Carico di rottura minimo(kN)"
+            label="Carico di rottura minimo (kN)"
             dense
             outlined
           ></v-text-field>
@@ -86,6 +96,7 @@ export default class RopeDataSheetForm extends Vue {
     minimumBreakingStrength: 0,
     lay: "Right/Destro",
     strandsNumber: 3,
+    quantity: 1,
     ropeSpec: {
       materialType: "Example",
       diameter: 0,
@@ -107,12 +118,17 @@ export default class RopeDataSheetForm extends Vue {
   }
 
   onRopeSpecChange(ropeSpec: RopeSpec): void {
-    this.form.ropeLength = ropeSpec.length;
-    this.form.ropeMass = ropeSpec.weight;
+    this.form.ropeLength = ropeSpec.length * this.form.quantity;
+    this.form.ropeMass = ropeSpec.weight * this.form.quantity;
     let gravityAcceleration = 98;
     let minimumBreakingStrengthKN = ropeSpec.minimumBreakingStrength / gravityAcceleration;
     this.form.minimumBreakingStrength = parseFloat(minimumBreakingStrengthKN.toFixed(1));
-    this.form.linearMass = (this.form.ropeMass * 1000) / this.form.ropeLength;
+    this.form.linearMass = Math.round((this.form.ropeMass * 1000) / this.form.ropeLength);
+  }
+
+  onQuantityChange(quantity: number): void {
+    this.form.ropeLength = this.form.ropeSpec.length * quantity;
+    this.form.ropeMass = this.form.ropeSpec.weight * quantity;
   }
 
   prettyRopeSpec(ropeSpec: RopeSpec): string {

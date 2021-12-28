@@ -68,7 +68,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
             createCellValue(ropeDataSheet.ropeSpec.diameter + " mm"),
           ],
           [
-            createCellDescription("Number and type of yarns", "Numero e tipo dei fili"),
+            createCellDescription("Number and yarn type", "Numero e tipo dei fili"),
             createCellValue(ropeDataSheet.yarnsNumberAndType),
             createCellDescription("Number of strands", "Numero dei legnoli"),
             createCellValue(ropeDataSheet.strandsNumber.toString()),

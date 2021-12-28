@@ -12,5 +12,6 @@ export interface RopeDataSheet {
   yarnsNumberAndType: string;
   lay: string;
   strandsNumber: number;
+  quantity: number;
   ropeSpec: RopeSpec;
 }
