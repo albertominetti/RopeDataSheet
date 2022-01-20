@@ -87,7 +87,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
       alignment: "justify",
       columns: [
         {
-          text: "Rossiglione, " + DateTime.now().toLocaleString(),
+          text: "Rossiglione, " + new Date().toLocaleString("it-IT", { year: "numeric", month: "2-digit", day: "2-digit" }),
           fontSize: 14,
         },
         {
