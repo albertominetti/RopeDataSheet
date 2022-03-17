@@ -68,7 +68,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
             createCellValue(ropeDataSheet.ropeSpec.diameter + " mm"),
           ],
           [
-            createCellDescription("Number and type of yarns", "Numero e tipo dei fili"),
+            createCellDescription("Number and yarn type", "Numero e tipo dei fili"),
             createCellValue(ropeDataSheet.yarnsNumberAndType),
             createCellDescription("Number of strands", "Numero dei legnoli"),
             createCellValue(ropeDataSheet.strandsNumber.toString()),
@@ -87,7 +87,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
       alignment: "justify",
       columns: [
         {
-          text: "Rossiglione, " + DateTime.now().toLocaleString(),
+          text: "Rossiglione, " + new Date().toLocaleString("it-IT", { year: "numeric", month: "2-digit", day: "2-digit" }),
           fontSize: 14,
         },
         {
