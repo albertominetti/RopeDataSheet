@@ -1,7 +1,6 @@
 import { RopeSpec } from "@/model/RopeSpec";
 
 export interface RopeDataSheet {
-  manufacturer: string;
   purchaser: string;
   orderNumber: string;
   intendedFor: string;
