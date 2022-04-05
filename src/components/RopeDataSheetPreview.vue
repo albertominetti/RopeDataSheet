@@ -35,12 +35,12 @@ import { httpClient } from "@/mixins/HttpClient";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 class SampleCompanyProfile implements CompanyProfile {
-  "name": "Sample company GmbH";
-  "email": "info@example.com";
-  "web": "www.example.com";
-  "address": "Liberty Island, New York 10004, United States";
-  "place": "New York";
-  "phone": "(+1) 555 503 3265";
+  name = "Sample company GmbH";
+  email = "info@example.com";
+  web = "www.example.com";
+  address = "Liberty Island, New York 10004, United States";
+  place = "New York";
+  phone = "(+1) 555 503 3265";
 }
 
 @Component({
