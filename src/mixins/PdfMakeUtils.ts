@@ -29,7 +29,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet, companyProfile: C
         widths: ["auto", "*", "auto", "*"],
         body: [
           [
-            createCellDescription("Manufacturer  or Supplier", "Fabbricante o Fornitore"),
+            createCellDescription("Manufacturer or Supplier", "Fabbricante o Fornitore"),
             createCellValue(companyProfile.name, 3),
             {},
             {},
