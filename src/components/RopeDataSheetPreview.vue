@@ -70,6 +70,7 @@ export default class RopeDataSheetPreview extends Vue {
 
   private static async getCompanyProfile(): Promise<CompanyProfile> {
     let response = await httpClient.get("static/data/company-profile.json", {
+      maxRedirects: 0,
       validateStatus: (status) => status == 200,
     });
     return response.data as CompanyProfile;
