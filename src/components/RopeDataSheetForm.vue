@@ -85,7 +85,6 @@ import { RopeDataSheet } from "@/model/RopeDataSheet";
 @Component
 export default class RopeDataSheetForm extends Vue {
   public form: RopeDataSheet = {
-    manufacturer: "Corderia e Stoppificio di Minetti G. & C. S.a.s.",
     purchaser: "",
     orderNumber: "",
     intendedFor: "",
