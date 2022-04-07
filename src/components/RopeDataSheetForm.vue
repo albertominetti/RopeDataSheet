@@ -3,8 +3,11 @@
     <v-card-title>Rope Data Sheet</v-card-title>
     <v-card-text>
       <v-row dense>
-        <v-col cols="12">
+        <v-col cols="9">
           <v-text-field v-model="form.purchaser" label="Committente" dense outlined></v-text-field>
+        </v-col>
+        <v-col cols="3">
+          <v-checkbox v-model="form.automaticSignature" label="Firma Automatica" dense outlined></v-checkbox>
         </v-col>
       </v-row>
       <v-row dense>
@@ -96,6 +99,7 @@ export default class RopeDataSheetForm extends Vue {
     lay: "Right/Destro",
     strandsNumber: 3,
     quantity: 1,
+    automaticSignature: true,
     ropeSpec: {
       materialType: "Example",
       diameter: 0,
