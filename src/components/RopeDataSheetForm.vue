@@ -36,7 +36,7 @@
             label="Colli"
             dense
             outlined
-            @change="onQuantityChange"
+            @input="onQuantityChange"
           ></v-text-field>
         </v-col>
       </v-row>
