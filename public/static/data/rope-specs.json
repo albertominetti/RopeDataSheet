@@ -170,6 +170,13 @@
     },
     {
       "materialType": "SISAL",
+      "diameter": 18,
+      "weight": 100,
+      "minimumBreakingStrength": 2130,
+      "length": 420
+    },
+    {
+      "materialType": "SISAL",
       "diameter": 20,
       "weight": 60,
       "minimumBreakingStrength": 2840,

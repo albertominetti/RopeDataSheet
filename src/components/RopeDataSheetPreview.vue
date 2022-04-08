@@ -23,14 +23,25 @@
 <script lang="ts">
 import { Component, PropSync, Vue, Watch } from "vue-property-decorator";
 import { RopeDataSheet } from "@/model/RopeDataSheet";
+import { CompanyProfile } from "@/model/CompanyProfile";
 import { DateTime } from "luxon";
 import { getRopeDataSheet } from "@/mixins/PdfMakeUtils";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import pdf from "vue-pdf";
 import HumanTimer from "human-timer";
+import { httpClient } from "@/mixins/HttpClient";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
+class SampleCompanyProfile implements CompanyProfile {
+  name = "Sample company GmbH";
+  email = "info@example.com";
+  web = "www.example.com";
+  address = "Liberty Island, New York 10004, United States";
+  place = "New York";
+  phone = "(+1) 555 503 3265";
+}
 
 @Component({
   components: {
@@ -42,15 +53,29 @@ export default class RopeDataSheetPreview extends Vue {
   form!: RopeDataSheet;
   pdfSource = "";
   filename = "document.pdf";
+  companyProfile: CompanyProfile = new SampleCompanyProfile();
   pdfGenerationTimer = new HumanTimer({
     seconds: 2,
     zeroes: false,
     onEnd: () => this.generatePdf(),
   });
 
+  async mounted(): Promise<void> {
+    try {
+      this.companyProfile = await RopeDataSheetPreview.getCompanyProfile();
+    } catch (error) {
+      console.warn("The configuration for the company profile is missing, it must be present for PROD");
+    }
+  }
+
+  private static async getCompanyProfile(): Promise<CompanyProfile> {
+    let response = await httpClient.get("static/data/company-profile.json");
+    return response.data as CompanyProfile;
+  }
+
   generatePdf(): void {
     console.log("Generating PDF...");
-    const pdfDefinition = getRopeDataSheet(this.form);
+    const pdfDefinition = getRopeDataSheet(this.form, this.companyProfile);
     pdfMake.createPdf(pdfDefinition).getDataUrl((url) => (this.pdfSource = url));
   }
 
