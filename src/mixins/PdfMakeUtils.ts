@@ -1,6 +1,6 @@
 import { Content, ContentTable, TableCell, TDocumentDefinitions } from "pdfmake/interfaces";
 import { RopeDataSheet } from "@/model/RopeDataSheet";
-import { DateTime } from "luxon";
+import { CompanyProfile } from "@/model/CompanyProfile";
 
 export const createCellDescription = (upperDescr: string, lowerDescr: string): TableCell => ({
   text: ["\n", upperDescr, "\n", { text: lowerDescr, italics: true }, "\n\n"],
@@ -13,11 +13,11 @@ export const createCellValue = (value: Content, colSpan?: number): TableCell => 
   margin: [10, 7, 0, 0],
 });
 
-export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinitions => ({
+export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet, companyProfile: CompanyProfile): TDocumentDefinitions => ({
   pageSize: "A4",
   content: [
     {
-      text: "Corderia e Stoppificio di Minetti G. & Co.",
+      text: companyProfile.name,
       style: ["header", "spacer"],
     },
     {
@@ -29,8 +29,8 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
         widths: ["auto", "*", "auto", "*"],
         body: [
           [
-            createCellDescription("Manufacturer  or Supplier", "Fabbricante o Fornitore"),
-            createCellValue(ropeDataSheet.manufacturer, 3),
+            createCellDescription("Manufacturer or Supplier", "Fabbricante o Fornitore"),
+            createCellValue(companyProfile.name, 3),
             {},
             {},
           ],
@@ -68,7 +68,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
             createCellValue(ropeDataSheet.ropeSpec.diameter + " mm"),
           ],
           [
-            createCellDescription("Number and type of yarns", "Numero e tipo dei fili"),
+            createCellDescription("Number and yarn type", "Numero e tipo dei fili"),
             createCellValue(ropeDataSheet.yarnsNumberAndType),
             createCellDescription("Number of strands", "Numero dei legnoli"),
             createCellValue(ropeDataSheet.strandsNumber.toString()),
@@ -87,7 +87,7 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
       alignment: "justify",
       columns: [
         {
-          text: "Rossiglione, " + DateTime.now().toLocaleString(),
+          text: companyProfile.place + ", " + new Date().toLocaleString("it-IT", { year: "numeric", month: "2-digit", day: "2-digit" }),
           fontSize: 14,
         },
         {
@@ -108,17 +108,17 @@ export const getRopeDataSheet = (ropeDataSheet: RopeDataSheet): TDocumentDefinit
     columns: [
       {
         text: [
-          "Corderia e Stoppificio di Minetti G. & Co. S.a.s.\n",
-          "Piazza Marconi 4, Rossiglione 16010, Genova, ITALY\n",
-          "Phone: (+39) 010 925 210 - (+39) 329 944 5215\n",
+          companyProfile.name + "\n",
+          companyProfile.address + "\n",
+          "Phone: " + companyProfile.phone + "\n",
           {
-            text: "info@corderiaminetti.it",
-            link: "mailto:info@corderiaminetti.it",
+            text: companyProfile.email,
+            link: "mailto:" + companyProfile.email,
           },
           { text: " | " },
           {
-            text: "www.corderiaminetti.it",
-            link: "www.corderiaminetti.it",
+            text: companyProfile.web,
+            link: companyProfile.web,
           },
         ],
         style: "footer",
