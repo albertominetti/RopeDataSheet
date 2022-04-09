@@ -6,7 +6,7 @@ Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
-    path: "/",
+    path: process.env.NODE_ENV === "production" ? "/rope-data-sheet/" : "/",
     name: "RopeDataSheetPage",
     component: RopeDataSheetPage,
   },
