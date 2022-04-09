@@ -12,5 +12,6 @@ export interface RopeDataSheet {
   lay: string;
   strandsNumber: number;
   quantity: number;
+  automaticSignature: boolean;
   ropeSpec: RopeSpec;
 }
