@@ -159,8 +159,8 @@ export const buildRopeDataSheet = (
   if (ropeDataSheet.automaticSignature) {
     docDefinition.background = {
       image: encodedSignature,
-      absolutePosition: { x: 300, y: 706 },
-      fit: [260, 38],
+      absolutePosition: { x: 300, y: 680 },
+      fit: [300, 80],
       alignment: "center",
     };
   }
