@@ -25,23 +25,17 @@ import { Component, PropSync, Vue, Watch } from "vue-property-decorator";
 import { RopeDataSheet } from "@/model/RopeDataSheet";
 import { CompanyProfile } from "@/model/CompanyProfile";
 import { DateTime } from "luxon";
-import { getRopeDataSheet } from "@/mixins/PdfMakeUtils";
+import { buildRopeDataSheet } from "@/mixins/PdfMakeUtils";
+import { getBase64ImageFromURL } from "@/mixins/ImageUtils";
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import pdf from "vue-pdf";
 import HumanTimer from "human-timer";
 import { httpClient } from "@/mixins/HttpClient";
+import { SampleCompanyProfile } from "@/model/SampleCompanyProfile";
+import { sampleSignature } from "@/model/SampleSignature";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
-class SampleCompanyProfile implements CompanyProfile {
-  name = "Sample company GmbH";
-  email = "info@example.com";
-  web = "www.example.com";
-  address = "Liberty Island, New York 10004, United States";
-  place = "New York";
-  phone = "(+1) 555 503 3265";
-}
 
 @Component({
   components: {
@@ -54,6 +48,7 @@ export default class RopeDataSheetPreview extends Vue {
   pdfSource = "";
   filename = "document.pdf";
   companyProfile: CompanyProfile = new SampleCompanyProfile();
+  encodedSignature: string = sampleSignature;
   pdfGenerationTimer = new HumanTimer({
     seconds: 2,
     zeroes: false,
@@ -66,6 +61,12 @@ export default class RopeDataSheetPreview extends Vue {
     } catch (error) {
       console.warn("The configuration for the company profile is missing, it must be present for PROD");
     }
+
+    try {
+      this.encodedSignature = await getBase64ImageFromURL("static/data/signature.png");
+    } catch (error) {
+      console.warn("The configuration for the signature is missing, it must be present for PROD");
+    }
   }
 
   private static async getCompanyProfile(): Promise<CompanyProfile> {
@@ -75,7 +76,7 @@ export default class RopeDataSheetPreview extends Vue {
 
   generatePdf(): void {
     console.log("Generating PDF...");
-    const pdfDefinition = getRopeDataSheet(this.form, this.companyProfile);
+    const pdfDefinition = buildRopeDataSheet(this.form, this.companyProfile, this.encodedSignature);
     pdfMake.createPdf(pdfDefinition).getDataUrl((url) => (this.pdfSource = url));
   }
 
