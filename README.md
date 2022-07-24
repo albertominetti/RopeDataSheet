@@ -4,6 +4,12 @@ This standalone application generates a PDF file based on the data provided in t
 
 [<img alt="Deployed with FTP Deploy Action" src="https://img.shields.io/badge/Deployed With-FTP DEPLOY ACTION-%3CCOLOR%3E?style=for-the-badge&color=0077b6">](https://github.com/SamKirkland/FTP-Deploy-Action)
 
+## Demo and details
+
+The single page app allows generating a quality declaration PDF document for selling goods with automatic calculation of dimensions and weight using a preloaded database of ropes specifications. It uses modern technologies such as the auto-completion for searching the good type, auto creation and preview of the PDF document, auto signature (if required), deploy pipeline for preview and production and a simple way to change the configuration in the production environment.
+
+The non productive demo is available on [vercel](https://rope-data-sheet.vercel.app/) as a preview.
+
 ## Project setup
 ```
 npm install
