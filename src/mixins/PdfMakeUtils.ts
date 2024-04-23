@@ -6,8 +6,19 @@ export const createCellDescription = (upperDescr: string, lowerDescr: string): T
   text: ["\n", upperDescr, "\n", { text: lowerDescr, italics: true }, "\n\n"],
 });
 
+export const createCellNoSpaceDescription = (upperDescr: string, lowerDescr: string): TableCell => ({
+  text: [upperDescr, "\n", { text: lowerDescr, italics: true }, "\n"],
+});
+
 export const createCellValue = (value: Content, colSpan?: number): TableCell => ({
   text: "\n" + value,
+  colSpan: colSpan,
+  alignment: "left",
+  margin: [10, 7, 0, 0],
+});
+
+export const createCellNoSpaceValue = (value: Content, colSpan?: number): TableCell => ({
+  text: value,
   colSpan: colSpan,
   alignment: "left",
   margin: [10, 7, 0, 0],
@@ -41,10 +52,12 @@ export const buildRopeDataSheet = (
             ],
             [createCellDescription("Purchaser", "Committente"), createCellValue(ropeDataSheet.purchaser, 3)],
             [
-              createCellDescription("Order No.", "Ordine N."),
-              createCellValue(ropeDataSheet.orderNumber),
-              createCellDescription("Intended for", "Destinazione"),
-              createCellValue(ropeDataSheet.intendedFor),
+              createCellNoSpaceDescription("Order No.", "Ordine N."),
+              createCellNoSpaceValue(ropeDataSheet.orderNumber, 3),
+            ],
+            [
+              createCellNoSpaceDescription("Intended for", "Destinazione"),
+              createCellNoSpaceValue(ropeDataSheet.intendedFor, 3),
             ],
           ],
         },
