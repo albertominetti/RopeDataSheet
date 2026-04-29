@@ -321,6 +321,125 @@
       "weight": 145,
       "minimumBreakingStrength": 8370,
       "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 6,
+      "weight": 9,
+      "minimumBreakingStrength": 260,
+      "length": 300
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 8,
+      "weight": 11,
+      "minimumBreakingStrength": 480,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 10,
+      "weight": 15,
+      "minimumBreakingStrength": 635,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 12,
+      "weight": 22,
+      "minimumBreakingStrength": 950,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 14,
+      "weight": 30,
+      "minimumBreakingStrength": 1280,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 16,
+      "weight": 40,
+      "minimumBreakingStrength": 1780,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 18,
+      "weight": 49,
+      "minimumBreakingStrength": 2130,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 18,
+      "weight": 100,
+      "minimumBreakingStrength": 2130,
+      "length": 420
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 20,
+      "weight": 60,
+      "minimumBreakingStrength": 2840,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 22,
+      "weight": 73,
+      "minimumBreakingStrength": 3400,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 24,
+      "weight": 85,
+      "minimumBreakingStrength": 4060,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 26,
+      "weight": 101,
+      "minimumBreakingStrength": 4720,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 28,
+      "weight": 117,
+      "minimumBreakingStrength": 5330,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 30,
+      "weight": 135,
+      "minimumBreakingStrength": 6100,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 32,
+      "weight": 152,
+      "minimumBreakingStrength": 6860,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 34,
+      "weight": 171,
+      "minimumBreakingStrength": 7700,
+      "length": 200
+    },
+    {
+      "materialType": "MANILA",
+      "diameter": 36,
+      "weight": 190,
+      "minimumBreakingStrength": 8640,
+      "length": 200
     }
   ]
 }
