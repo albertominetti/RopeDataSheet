@@ -27,7 +27,7 @@ export const createCellNoSpaceValue = (value: Content, colSpan?: number): TableC
 export const buildRopeDataSheet = (
   ropeDataSheet: RopeDataSheet,
   companyProfile: CompanyProfile,
-  encodedSignature: string
+  encodedSignature: string,
 ): TDocumentDefinitions => {
   const docDefinition: TDocumentDefinitions = {
     pageSize: "A4",
