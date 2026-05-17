@@ -28,14 +28,15 @@ import { DateTime } from "luxon";
 import { buildRopeDataSheet } from "@/mixins/PdfMakeUtils";
 import { getBase64ImageFromURL } from "@/mixins/ImageUtils";
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
 import pdf from "vue-pdf";
 import HumanTimer from "human-timer";
 import { httpClient } from "@/mixins/HttpClient";
 import { SampleCompanyProfile } from "@/model/SampleCompanyProfile";
 import { sampleSignature } from "@/model/SampleSignature";
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// @types/pdfmake declares the old 0.1.x shape; 0.2.x exports vfs data directly
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+pdfMake.vfs = require("pdfmake/build/vfs_fonts");
 
 @Component({
   components: {
