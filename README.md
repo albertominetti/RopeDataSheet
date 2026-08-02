@@ -11,22 +11,35 @@ The single page app allows generating a quality declaration PDF document for sel
 The non productive demo is available on [vercel](https://rope-data-sheet.vercel.app/) as a preview.
 
 ## Project setup
-```
+```bash
 npm install
 ```
 
 ### Compiles and hot-reloads for development
-```
+```bash
 npm run serve
 ```
 
 ### Compiles and minifies for production
-```
+```bash
 npm run build
 ```
 
-### Lints and fixes files
+#### Test with proper build files
+```bash
+npm run build
+
+mkdir -p serve-test/rope-data-sheet
+rm -r serve-test/rope-data-sheet/*  
+cp -r dist/* serve-test/rope-data-sheet/
+
+npx serve serve-test       
+
+# check url http://localhost:3000/rope-data-sheet
 ```
+
+### Lints and fixes files
+```bash
 npm run lint
 ```
 
